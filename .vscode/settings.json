@@ -1,0 +1,6 @@
+{
+  "python.defaultInterpreterPath": "/home/petertrinh/Documents/briefly/adk-env/bin/python",
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}"
+  ]
+}

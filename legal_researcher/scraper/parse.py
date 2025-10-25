@@ -3,7 +3,12 @@
 Keep parsing lightweight and return extracted fields and snippets.
 """
 from typing import Dict, Optional
-from bs4 import BeautifulSoup
+
+# import BeautifulSoup with a helpful fallback if the package is not installed
+try:
+    from bs4 import BeautifulSoup
+except Exception:  # ImportError or other import-time issues
+    BeautifulSoup = None
 
 
 def parse_html(html: str, selectors: Optional[Dict[str, str]] = None) -> Dict:
@@ -11,6 +16,11 @@ def parse_html(html: str, selectors: Optional[Dict[str, str]] = None) -> Dict:
 
     selectors: optional mapping to CSS selectors for title/author/date/content.
     """
+    if BeautifulSoup is None:
+        raise RuntimeError(
+            "beautifulsoup4 (bs4) is required to parse HTML. Install it with: `pip install beautifulsoup4`"
+        )
+
     soup = BeautifulSoup(html, "html.parser")
 
     title = ""
