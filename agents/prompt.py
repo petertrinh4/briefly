@@ -19,6 +19,7 @@ Based on the data provided, determine which agent is best suited for the case: i
 - If multiple categories are indicated, ask clarifying questions before routing.
 - Ensure the client is directed efficiently and accurately.
 - Route any client related messages to clientcom_agent.
+- If the user asks for law related arguments or conerns route it to legal_agent.
 
 """
 
