@@ -1,6 +1,6 @@
-from google.adk.agents.llm_agent import Agent
-from agents.sub_agents.clientcom_agent import clientcom_agent
-from agents.prompt import ROOT_INSTR
+from google.adk.agents import Agent
+from .prompt import ROOT_INSTR
+from .sub_agents.clientcom.agent import clientcom_agent
 
 # Controller agent
 root_agent = Agent(
@@ -8,11 +8,7 @@ root_agent = Agent(
     name='root_agent',
     description='Main conductor, directing clients to the right',
     instruction=ROOT_INSTR,
+    sub_agents=[
+        clientcom_agent
+    ]
 )
-
-def handle_user_input(message: str):
-    """Route the user’s input to the right agent"""
-    if "client" in message.lower():
-        return clientcom_agent.run(message)
-    else:
-        return root_agent.run(message)
